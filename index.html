@@ -49,7 +49,7 @@ header.site{
   position:fixed;top:0;left:0;right:0;z-index:100;
   display:flex;align-items:center;justify-content:space-between;
   padding:1.1rem 6vw;
-  background:rgba(251,249,245,.86);
+  background:rgba(241,242,241,.86);
   backdrop-filter:blur(10px);
   border-bottom:1px solid var(--line);
 }
@@ -58,8 +58,9 @@ header.site{
 nav.links{display:flex;align-items:center;gap:2rem;font-size:.85rem;}
 nav.links a{text-decoration:none;color:var(--ink-soft);transition:color .2s;}
 nav.links a:hover{color:var(--red-deep);}
+.header-right{display:flex;align-items:center;gap:1.2rem;}
 .langtoggle{
-  display:flex;border:1px solid var(--ink);border-radius:20px;overflow:hidden;font-size:.72rem;letter-spacing:.05em;
+  display:flex;border:1px solid var(--ink);border-radius:20px;overflow:hidden;font-size:.72rem;letter-spacing:.05em;flex-shrink:0;
 }
 .langtoggle button{
   background:none;border:none;padding:.35rem .8rem;cursor:pointer;font-family:'Inter',sans-serif;
@@ -67,63 +68,97 @@ nav.links a:hover{color:var(--red-deep);}
 }
 .langtoggle button.active{background:var(--ink);color:var(--paper);}
 .navlinks-desktop{display:flex;}
-@media(max-width:820px){.navlinks-desktop{display:none;}}
+.hamburger{
+  display:none;flex-direction:column;justify-content:center;gap:5px;
+  width:34px;height:34px;background:none;border:none;cursor:pointer;padding:0;flex-shrink:0;
+}
+.hamburger span{display:block;width:100%;height:2px;background:var(--ink);transition:.25s;}
+.hamburger.open span:nth-child(1){transform:translateY(7px) rotate(45deg);}
+.hamburger.open span:nth-child(2){opacity:0;}
+.hamburger.open span:nth-child(3){transform:translateY(-7px) rotate(-45deg);}
+.navlinks-mobile{
+  display:none;
+  position:fixed;top:0;left:0;right:0;bottom:0;
+  background:var(--paper);
+  z-index:99;
+  flex-direction:column;
+  align-items:center;justify-content:center;
+  gap:2.2rem;
+  font-family:'Space Grotesk',sans-serif;font-size:1.6rem;
+}
+.navlinks-mobile.open{display:flex;}
+.navlinks-mobile a{text-decoration:none;color:var(--ink);}
+@media(max-width:820px){
+  .navlinks-desktop{display:none;}
+  .hamburger{display:flex;}
+}
 
 /* ---------- HERO ---------- */
 .hero{
   min-height:100svh;
-  display:flex;align-items:center;justify-content:center;
+  display:flex;flex-direction:column;align-items:center;justify-content:flex-end;
   position:relative;
-  padding:7rem 6vw 4rem;
+  padding:7rem 6vw 5rem;
   text-align:center;
   overflow:hidden;
+  background:url('images/test-effort.jpg') center 20% / cover no-repeat;
+}
+.hero::before{
+  content:'';
+  position:absolute;inset:0;
+  background:linear-gradient(180deg, rgba(18,19,20,.25) 0%, rgba(18,19,20,.35) 45%, rgba(18,19,20,.82) 100%);
+  z-index:0;
 }
 .breath-ring{
   position:absolute;
-  width:min(70vw,720px);height:min(70vw,720px);
+  width:min(80vw,820px);height:min(80vw,820px);
   border-radius:50%;
-  background:radial-gradient(circle, rgba(234,27,14,.92) 0%, rgba(234,27,14,.62) 40%, rgba(234,27,14,0) 72%);
-  filter:blur(1px);
+  background:radial-gradient(circle, rgba(234,27,14,.55) 0%, rgba(234,27,14,.28) 45%, rgba(234,27,14,0) 72%);
+  mix-blend-mode:screen;
   animation:breathe 8s ease-in-out infinite;
   z-index:0;
+  top:38%;left:50%;transform:translate(-50%,-50%);
 }
 @keyframes breathe{
-  0%,100%{transform:scale(.92);opacity:.75;}
-  50%{transform:scale(1.06);opacity:1;}
+  0%,100%{transform:translate(-50%,-50%) scale(.92);opacity:.7;}
+  50%{transform:translate(-50%,-50%) scale(1.08);opacity:1;}
 }
 .hero-inner{position:relative;z-index:1;max-width:760px;}
-.hero .eyebrow{display:block;margin-bottom:1.4rem;}
+.hero .eyebrow{display:block;margin-bottom:1.4rem;color:#F3A79B;}
 .hero h1{
   font-size:clamp(3.2rem,10vw,6.4rem);
   font-weight:500;
   letter-spacing:.01em;
-  color:var(--ink);
+  color:var(--paper);
   line-height:.95;
 }
 .hero p.tagline{
   margin-top:1.6rem;
   font-family:'Space Grotesk',sans-serif;
-  
   font-weight:400;
   font-size:clamp(1.1rem,2.4vw,1.5rem);
-  color:var(--ink-soft);
+  color:#EDECE9;
   max-width:34rem;
   margin-left:auto;margin-right:auto;
 }
 .hero-meta{
-  margin-top:2.6rem;display:flex;gap:2.2rem;justify-content:center;
-  font-size:.78rem;letter-spacing:.08em;text-transform:uppercase;color:var(--stone);
+  margin-top:2.6rem;display:flex;gap:2.2rem;justify-content:center;flex-wrap:wrap;
+  font-size:.78rem;letter-spacing:.08em;text-transform:uppercase;color:#CFCBC4;
 }
 .breathcue{
-  position:absolute;bottom:2.2rem;left:50%;transform:translateX(-50%);
-  font-size:.7rem;letter-spacing:.24em;text-transform:uppercase;color:var(--stone);
-  display:flex;gap:.5rem;align-items:center;
+  position:relative;z-index:1;margin-top:3rem;
+  font-size:.7rem;letter-spacing:.24em;text-transform:uppercase;color:#CFCBC4;
+  display:flex;gap:.5rem;align-items:center;justify-content:center;
 }
-.breathcue .line{width:1px;height:26px;background:var(--stone);animation:pulseline 4s ease-in-out infinite;}
+.breathcue .line{width:1px;height:26px;background:#CFCBC4;animation:pulseline 4s ease-in-out infinite;}
 @keyframes pulseline{0%,100%{opacity:.25;}50%{opacity:1;}}
 
 @media(prefers-reduced-motion:reduce){
   .breath-ring,.breathcue .line{animation:none;}
+}
+@media(max-width:600px){
+  .hero{background-position:center 15%;padding:6.5rem 6vw 3rem;}
+  .hero h1{font-size:clamp(2.6rem,14vw,4rem);}
 }
 
 /* ---------- SECTION generic ---------- */
@@ -249,11 +284,21 @@ html[data-active="en"] span[data-lang="en"]{display:inline;}
     <a href="#intention" data-lang="fr">Écriture</a><a href="#intention" data-lang="en">Writing</a>
     <a href="#contact" data-lang="fr">Contact</a><a href="#contact" data-lang="en">Contact</a>
   </nav>
-  <div class="langtoggle">
-    <button id="btn-fr" class="active">FR</button>
-    <button id="btn-en">EN</button>
+  <div class="header-right">
+    <div class="langtoggle">
+      <button id="btn-fr" class="active">FR</button>
+      <button id="btn-en">EN</button>
+    </div>
+    <button class="hamburger" id="hamburger" aria-label="Menu"><span></span><span></span><span></span></button>
   </div>
 </header>
+
+<nav class="navlinks-mobile" id="mobileNav">
+  <a href="#synopsis" data-lang="fr">Synopsis</a><a href="#synopsis" data-lang="en">Synopsis</a>
+  <a href="#pourquoi" data-lang="fr">Le film</a><a href="#pourquoi" data-lang="en">The film</a>
+  <a href="#intention" data-lang="fr">Écriture</a><a href="#intention" data-lang="en">Writing</a>
+  <a href="#contact" data-lang="fr">Contact</a><a href="#contact" data-lang="en">Contact</a>
+</nav>
 
 <section class="hero">
   <div class="breath-ring" aria-hidden="true"></div>
@@ -290,7 +335,7 @@ html[data-active="en"] span[data-lang="en"]{display:inline;}
       <span class="eyebrow" data-lang="en">Synopsis</span>
 
       <div data-lang="fr" style="margin-top:1.4rem;">
-        <p>Anne naît avec une maladie pulmonaire rare qui, dès ses 30 ans, la condamne à envisager une greffe des deux poumons. Contre toute attente, grâce à un médecin visionnaire et à sa propre volonté, elle parvient à repousser cette échéance pendant plus de vingt ans.</p>
+        <p>Anne naît avec une maladie pulmonaire rare qui, dès ses 30 ans, lui fait envisager une greffe des deux poumons. Contre toute attente, grâce à un médecin visionnaire et à sa propre volonté, elle parvient à repousser cette échéance pendant plus de vingt ans.</p>
         <p>Mais la vie ne lui fait aucun cadeau : un divorce, la perte brutale de son grand amour, le fossé qui se creuse avec son fils… et cette maladie qui s'aggrave inexorablement. À 55 ans, la greffe semble inévitable.</p>
         <p>C'est alors que le destin bascule à nouveau : une thérapie qui l'aide à décoder le sens symbolique de sa maladie, l'essai d'un médicament qui décuple ses capacités respiratoires… et surtout une quête intime : comprendre quel pouvoir nous avons vraiment sur notre vie.</p>
         <p>Avec ses médecins, sa thérapeute, sa sœur et ceux qui l'ont accompagnée, Anne mène une enquête bouleversante, entre science et spiritualité, entre limites du corps et force insoupçonnée de l'esprit. De ses balades à vélo vers son pneumologue à La Rochelle, à ses retraites dans un monastère bouddhiste, elle trace peu à peu les contours de ce qui pourrait bien être une philosophie du bonheur.</p>
@@ -318,8 +363,8 @@ html[data-active="en"] span[data-lang="en"]{display:inline;}
       <h2 data-lang="fr">Quatre fils conducteurs</h2>
       <h2 data-lang="en">Four threads</h2>
     </div>
-    <p class="why-intro" data-lang="fr">Oxygène n'est pas seulement le portrait d'une malade : c'est une enquête sur ce qui nous soutient, nous relie et nous transforme face à l'épreuve. Le film s'articule autour de quatre idées qui traversent le parcours d'Anne.</p>
-    <p class="why-intro" data-lang="en">Oxygène is not simply the portrait of a patient: it's an inquiry into what sustains us, connects us, and transforms us in the face of hardship. The film is built around four ideas that run through Anne's journey.</p>
+    <p class="why-intro" data-lang="fr">Oxygène est une enquête sur ce qui nous soutient, nous relie et nous transforme face à l'épreuve. Le film s'articule autour du témoignage d'une vie qui, au fond, nous parle à tous : il nous faut, à un moment ou à un autre, faire face à des épreuves — la question est de savoir comment nous les accueillons. Trois axes traversent le récit : le parcours d'Anne lui-même, fait d'événements qui s'enchaînent et créent des tournants souvent brutaux ; les priorités qu'elle a très vite appris à mettre en place — créativité, connexion aux autres, recul face aux événements, une perception affûtée du monde et de sa propre vie ; et une vision holistique et intégrative de l'existence, y compris de la médecine, qui a produit des résultats concrets dépassant tous les espoirs, révélant une force de l'esprit insoupçonnée et largement sous-utilisée.</p>
+    <p class="why-intro" data-lang="en">Oxygène is an inquiry into what sustains us, connects us, and transforms us in the face of hardship. The film is built around the testimony of one life that, in the end, speaks to us all: sooner or later, we all have to face hardship — the question is how we meet it. Three threads run through the story: Anne's own journey, made of events that chain together into often brutal turning points; the priorities she very quickly learned to put in place — creativity, connection with others, perspective in the face of events, a sharpened perception of the world and of her own life; and a holistic, integrative vision of life, including of medicine, which produced concrete results beyond all hope, revealing an unsuspected and largely underused strength of the mind.</p>
 
     <div class="why-grid">
       <div class="why-row">
@@ -422,6 +467,19 @@ function setLang(l){
 document.getElementById('btn-fr').addEventListener('click', function(){setLang('fr');});
 document.getElementById('btn-en').addEventListener('click', function(){setLang('en');});
 setLang('fr');
+
+var hamburger = document.getElementById('hamburger');
+var mobileNav = document.getElementById('mobileNav');
+hamburger.addEventListener('click', function(){
+  hamburger.classList.toggle('open');
+  mobileNav.classList.toggle('open');
+});
+mobileNav.querySelectorAll('a').forEach(function(a){
+  a.addEventListener('click', function(){
+    hamburger.classList.remove('open');
+    mobileNav.classList.remove('open');
+  });
+});
 </script>
 
 </body>
