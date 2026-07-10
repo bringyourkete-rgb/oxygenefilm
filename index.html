@@ -172,14 +172,11 @@ section{padding:7rem 0;position:relative;}
 .section-head h2{font-size:clamp(2rem,4.2vw,3rem);font-weight:500;line-height:1.08;margin-top:.6rem;}
 
 /* ---------- SYNOPSIS ---------- */
-#synopsis .wrap{max-width:1360px;}
+#synopsis .wrap{max-width:1100px;}
 .synopsis{
-  display:grid;grid-template-columns:.72fr 1.28fr;gap:4vw;align-items:start;
+  display:block;
 }
-.synopsis figure{position:sticky;top:6.5rem;}
-.synopsis figure img{border-radius:2px;}
-.synopsis figcaption{margin-top:.8rem;font-size:.78rem;color:var(--stone);letter-spacing:.02em;}
-.synopsis-text p{font-size:1.14rem;color:var(--ink-soft);margin-bottom:1.5rem;max-width:56rem;}
+.synopsis-text p{font-size:1.14rem;color:var(--ink-soft);margin-bottom:1.5rem;}
 .synopsis-text p:first-of-type::first-letter{
   font-family:'Space Grotesk',sans-serif;
   font-size:3.6rem;
@@ -189,10 +186,6 @@ section{padding:7rem 0;position:relative;}
   padding-top:.3rem;
   color:var(--red-deep);
   font-weight:500;
-}
-@media(max-width:900px){
-  .synopsis{grid-template-columns:1fr;}
-  .synopsis figure{position:static;}
 }
 
 /* ---------- POURQUOI ---------- */
@@ -249,8 +242,7 @@ section{padding:7rem 0;position:relative;}
   text-align:center;
 }
 .contact .eyebrow{color:#E8A79E;}
-.contact h2{font-size:clamp(2.2rem,5vw,3.6rem);font-weight:500;max-width:20ch;margin:.8rem auto 2rem;line-height:1.1;}
-.contact-links{display:flex;gap:2rem;justify-content:center;flex-wrap:wrap;margin-top:1rem;}
+.contact-links{display:flex;gap:2rem;justify-content:center;flex-wrap:wrap;margin-top:2.2rem;}
 .contact-links a{
   border:1px solid rgba(251,249,245,.35);padding:.85rem 1.8rem;border-radius:30px;
   text-decoration:none;font-size:.9rem;letter-spacing:.03em;transition:.2s;
@@ -334,9 +326,6 @@ html[data-active="en"] span[data-lang="en"]{display:inline;}
 
 <section id="synopsis">
   <div class="wrap synopsis">
-    <figure>
-      <img src="images/plage-bras.jpg" alt="Deux silhouettes, bras levés face à la mer">
-    </figure>
     <div class="synopsis-text">
       <span class="eyebrow" data-lang="fr">Synopsis</span>
       <span class="eyebrow" data-lang="en">Synopsis</span>
@@ -373,7 +362,7 @@ html[data-active="en"] span[data-lang="en"]{display:inline;}
 
     <div class="why-grid">
       <div class="why-row">
-        <div class="why-media"><img src="images/test-effort.jpg" alt="Test d'effort cardio-pulmonaire d'Anne en clinique"></div>
+        <div class="why-media"><img src="images/consultation.jpg" alt="Anne en consultation médicale"></div>
         <div class="why-text">
           <div class="why-label" data-lang="fr">Médecine</div>
           <div class="why-label" data-lang="en">Medicine</div>
@@ -427,7 +416,7 @@ html[data-active="en"] span[data-lang="en"]{display:inline;}
 
 <section id="intention">
   <div class="wrap intention">
-    <img src="images/consultation.jpg" alt="Anne en consultation médicale">
+    <img src="images/plage-bras.jpg" alt="Deux silhouettes, bras levés face à la mer">
     <div>
       <span class="eyebrow" data-lang="fr">Écriture</span>
       <span class="eyebrow" data-lang="en">Writing credit</span>
@@ -443,8 +432,6 @@ html[data-active="en"] span[data-lang="en"]{display:inline;}
   <div class="wrap">
     <span class="eyebrow" data-lang="fr">Rejoindre le projet</span>
     <span class="eyebrow" data-lang="en">Join the project</span>
-    <h2 data-lang="fr"></h2>
-    <h2 data-lang="en"></h2>
     <div class="contact-links">
       <a class="primary" href="mailto:contact@blandinefilms.com" data-lang="fr">Écrire à la réalisatrice</a>
       <a class="primary" href="mailto:contact@blandinefilms.com" data-lang="en">Write to the director</a>
