@@ -92,73 +92,78 @@ nav.links a:hover{color:var(--red-deep);}
   .navlinks-desktop{display:none;}
   .hamburger{display:flex;}
 }
+@media(max-width:480px){
+  header.site{padding:.9rem 5vw;}
+  .brandmark{font-size:.92rem;gap:.4rem;}
+  .header-right{gap:.7rem;}
+  .langtoggle{font-size:.66rem;}
+  .langtoggle button{padding:.3rem .6rem;}
+  .hamburger{width:28px;height:28px;gap:4px;}
+  .navlinks-mobile{font-size:1.3rem;gap:1.7rem;}
+}
 
 /* ---------- HERO ---------- */
-.hero{
+.hero-title{
   min-height:100svh;
-  display:flex;flex-direction:column;align-items:center;justify-content:flex-end;
+  display:flex;flex-direction:column;align-items:center;justify-content:center;
   position:relative;
-  padding:7rem 6vw 5rem;
+  padding:8rem 6vw 3.5rem;
   text-align:center;
   overflow:hidden;
-  background:url('images/test-effort.jpg') center 20% / cover no-repeat;
-}
-.hero::before{
-  content:'';
-  position:absolute;inset:0;
-  background:linear-gradient(180deg, rgba(18,19,20,.25) 0%, rgba(18,19,20,.35) 45%, rgba(18,19,20,.82) 100%);
-  z-index:0;
 }
 .breath-ring{
   position:absolute;
-  width:min(80vw,820px);height:min(80vw,820px);
+  width:min(70vw,720px);height:min(70vw,720px);
   border-radius:50%;
-  background:radial-gradient(circle, rgba(234,27,14,.55) 0%, rgba(234,27,14,.28) 45%, rgba(234,27,14,0) 72%);
-  mix-blend-mode:screen;
+  background:radial-gradient(circle, rgba(234,27,14,.92) 0%, rgba(234,27,14,.62) 40%, rgba(234,27,14,0) 72%);
+  filter:blur(1px);
   animation:breathe 8s ease-in-out infinite;
   z-index:0;
-  top:38%;left:50%;transform:translate(-50%,-50%);
 }
 @keyframes breathe{
-  0%,100%{transform:translate(-50%,-50%) scale(.92);opacity:.7;}
-  50%{transform:translate(-50%,-50%) scale(1.08);opacity:1;}
+  0%,100%{transform:scale(.92);opacity:.75;}
+  50%{transform:scale(1.06);opacity:1;}
 }
 .hero-inner{position:relative;z-index:1;max-width:760px;}
-.hero .eyebrow{display:block;margin-bottom:1.4rem;color:#F3A79B;}
-.hero h1{
+.hero-title .eyebrow{display:block;margin-bottom:1.4rem;}
+.hero-title h1{
   font-size:clamp(3.2rem,10vw,6.4rem);
   font-weight:500;
   letter-spacing:.01em;
-  color:var(--paper);
+  color:var(--ink);
   line-height:.95;
 }
-.hero p.tagline{
+.hero-image{width:100%;overflow:hidden;}
+.hero-image img{width:100%;height:min(70vh,640px);object-fit:cover;object-position:center 25%;}
+
+.hero-inner p.tagline{
   margin-top:1.6rem;
   font-family:'Space Grotesk',sans-serif;
   font-weight:400;
   font-size:clamp(1.1rem,2.4vw,1.5rem);
-  color:#EDECE9;
+  color:var(--ink-soft);
   max-width:34rem;
   margin-left:auto;margin-right:auto;
 }
 .hero-meta{
-  margin-top:2.6rem;display:flex;gap:2.2rem;justify-content:center;flex-wrap:wrap;
-  font-size:.78rem;letter-spacing:.08em;text-transform:uppercase;color:#CFCBC4;
+  margin-top:2.2rem;display:flex;gap:2.2rem;justify-content:center;flex-wrap:wrap;
+  font-size:.78rem;letter-spacing:.08em;text-transform:uppercase;color:var(--stone);
 }
 .breathcue{
-  position:relative;z-index:1;margin-top:3rem;
-  font-size:.7rem;letter-spacing:.24em;text-transform:uppercase;color:#CFCBC4;
+  margin-top:2.6rem;
+  font-size:.7rem;letter-spacing:.24em;text-transform:uppercase;color:var(--stone);
   display:flex;gap:.5rem;align-items:center;justify-content:center;
 }
-.breathcue .line{width:1px;height:26px;background:#CFCBC4;animation:pulseline 4s ease-in-out infinite;}
+.breathcue .line{width:1px;height:26px;background:var(--stone);animation:pulseline 4s ease-in-out infinite;}
 @keyframes pulseline{0%,100%{opacity:.25;}50%{opacity:1;}}
 
 @media(prefers-reduced-motion:reduce){
   .breath-ring,.breathcue .line{animation:none;}
 }
 @media(max-width:600px){
-  .hero{background-position:center 15%;padding:6.5rem 6vw 3rem;}
-  .hero h1{font-size:clamp(2.6rem,14vw,4rem);}
+  .hero-title{min-height:auto;padding:7rem 6vw 2.5rem;}
+  .hero-title h1{font-size:clamp(2.6rem,14vw,4rem);}
+  .hero-image img{height:52vh;}
 }
 
 /* ---------- SECTION generic ---------- */
@@ -300,7 +305,7 @@ html[data-active="en"] span[data-lang="en"]{display:inline;}
   <a href="#contact" data-lang="fr">Contact</a><a href="#contact" data-lang="en">Contact</a>
 </nav>
 
-<section class="hero">
+<section class="hero-title">
   <div class="breath-ring" aria-hidden="true"></div>
   <div class="hero-inner">
     <span class="eyebrow" data-lang="fr">Un film documentaire</span>
@@ -315,20 +320,22 @@ html[data-active="en"] span[data-lang="en"]{display:inline;}
       <span data-lang="fr">France</span>
       <span data-lang="en">France</span>
     </div>
-  </div>
-  <div class="breathcue">
-    <div class="line"></div>
-    <span data-lang="fr">Inspirer — Expirer</span>
-    <span data-lang="en">Breathe in — Breathe out</span>
+    <div class="breathcue">
+      <div class="line"></div>
+      <span data-lang="fr">Inspirer — Expirer</span>
+      <span data-lang="en">Breathe in — Breathe out</span>
+    </div>
   </div>
 </section>
+
+<div class="hero-image">
+  <img src="images/test-effort.jpg" alt="Anne pendant un test d'effort cardio-pulmonaire, masque sur le visage">
+</div>
 
 <section id="synopsis">
   <div class="wrap synopsis">
     <figure>
-      <img src="images/velo.jpg" alt="Anne à vélo sur le vieux port de La Rochelle">
-      <figcaption data-lang="fr">Anne, en route vers son pneumologue à La Rochelle.</figcaption>
-      <figcaption data-lang="en">Anne, on her way to her pulmonologist in La Rochelle.</figcaption>
+      <img src="images/plage-bras.jpg" alt="Deux silhouettes, bras levés face à la mer">
     </figure>
     <div class="synopsis-text">
       <span class="eyebrow" data-lang="fr">Synopsis</span>
@@ -360,8 +367,6 @@ html[data-active="en"] span[data-lang="en"]{display:inline;}
     <div class="section-head">
       <span class="eyebrow" data-lang="fr">Pourquoi ce film maintenant</span>
       <span class="eyebrow" data-lang="en">Why this film now</span>
-      <h2 data-lang="fr">Quatre fils conducteurs</h2>
-      <h2 data-lang="en">Four threads</h2>
     </div>
     <p class="why-intro" data-lang="fr">Oxygène est une enquête sur ce qui nous soutient, nous relie et nous transforme face à l'épreuve. Le film s'articule autour du témoignage d'une vie qui, au fond, nous parle à tous : il nous faut, à un moment ou à un autre, faire face à des épreuves — la question est de savoir comment nous les accueillons. Trois axes traversent le récit : le parcours d'Anne lui-même, fait d'événements qui s'enchaînent et créent des tournants souvent brutaux ; les priorités qu'elle a très vite appris à mettre en place — créativité, connexion aux autres, recul face aux événements, une perception affûtée du monde et de sa propre vie ; et une vision holistique et intégrative de l'existence, y compris de la médecine, qui a produit des résultats concrets dépassant tous les espoirs, révélant une force de l'esprit insoupçonnée et largement sous-utilisée.</p>
     <p class="why-intro" data-lang="en">Oxygène is an inquiry into what sustains us, connects us, and transforms us in the face of hardship. The film is built around the testimony of one life that, in the end, speaks to us all: sooner or later, we all have to face hardship — the question is how we meet it. Three threads run through the story: Anne's own journey, made of events that chain together into often brutal turning points; the priorities she very quickly learned to put in place — creativity, connection with others, perspective in the face of events, a sharpened perception of the world and of her own life; and a holistic, integrative vision of life, including of medicine, which produced concrete results beyond all hope, revealing an unsuspected and largely underused strength of the mind.</p>
@@ -386,8 +391,8 @@ html[data-active="en"] span[data-lang="en"]{display:inline;}
           <div class="why-label" data-lang="en">Bond</div>
           <h3 data-lang="fr">L'importance du bien-être mental et du soutien des proches</h3>
           <h3 data-lang="en">The importance of mental well-being and support from loved ones</h3>
-          <p data-lang="fr">Aucune bataille contre la maladie ne se mène seule. À travers les amis, la famille et les liens tissés au fil des années, le film montre comment le soutien des proches devient une ressource thérapeutique à part entière.</p>
-          <p data-lang="en">No battle against illness is fought alone. Through friends, family and bonds built over the years, the film shows how the support of loved ones becomes a therapeutic resource in its own right.</p>
+          <p data-lang="fr">À travers les amis, la famille et les liens tissés au fil des années, le film montre comment le soutien des proches devient une ressource thérapeutique à part entière.</p>
+          <p data-lang="en">Through friends, family and bonds built over the years, the film shows how the support of loved ones becomes a therapeutic resource in its own right.</p>
         </div>
       </div>
 
